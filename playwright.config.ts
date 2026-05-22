@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 3,
   reporter: [["html"], ["list"]],
   use: {
-    headless: false,
+    headless: true,
     trace: 'retain-on-failure',
     video: "on",
     screenshot: "on",
