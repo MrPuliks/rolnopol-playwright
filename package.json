@@ -9,5 +9,9 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4"
   },
+  "scripts": {
+    "test": "npx playwright test",
+    "test:chrome": "npx playwright test --project=chromium"
+  },
   "type": "module"
 }
