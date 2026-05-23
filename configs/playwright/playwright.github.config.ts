@@ -6,9 +6,9 @@ export default defineConfig({
   forbidOnly: !!process.env["CI"],
   retries: 1,
   workers: 12,
-  reporter: [["html"], ["list"]],
+  reporter: "list",
   use: {
-    baseURL: "test",
+    baseURL: "http://localhost:3000",
     headless: true,
     trace: "retain-on-failure",
     video: "on",

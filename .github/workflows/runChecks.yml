@@ -1,0 +1,23 @@
+name: Run checks
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  mergerequest:
+    name: Run checks
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup_node
+
+      - uses: ./.github/actions/install_dependencies
+
+      - uses: ./.github/actions/run_typecheck
+
+      - uses: ./.github/actions/run_eslint
