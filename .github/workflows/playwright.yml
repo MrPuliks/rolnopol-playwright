@@ -26,11 +26,11 @@ jobs:
 
       - name: Run typecheck
         shell: bash
-        run: npm run typecheck
+        run: npx tsc --noEmit
 
       - name: Run ESLint
         shell: bash
-        run: npm run lint
+        run: npx eslint
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps

@@ -1,12 +1,13 @@
 import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import playwright from "eslint-plugin-playwright";
 import { defineConfig } from "eslint/config";
+import tseslint from "typescript-eslint";
 
 export default defineConfig([
   js.configs.recommended,
   tseslint.configs.strictTypeChecked,
   {
-    ignores: ["node_modules", "dist"],
+    ignores: ["node_modules", "dist", "eslint.config.mts"],
   },
   {
     files: ["**/*.ts"],
@@ -20,5 +21,10 @@ export default defineConfig([
       "@typescript-eslint/no-floating-promises": "error",
       "@typescript-eslint/await-thenable": "error",
     },
+  },
+  {
+    files: ["tests/**/*.ts", "**/*.spec.ts"],
+    plugins: { playwright },
+    ...playwright.configs["flat/recommended"],
   },
 ]);
