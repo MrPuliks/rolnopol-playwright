@@ -1,20 +1,20 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./../../tests",
   fullyParallel: true,
   forbidOnly: !!process.env["CI"],
-  retries: 0,
-  workers: 4,
+  retries: 1,
+  workers: 12,
   reporter: [["html"], ["list"]],
   use: {
-    baseURL: process.env['BASE_URL'],
-    headless: false,
+    baseURL: "test",
+    headless: true,
     trace: "retain-on-failure",
     video: "on",
     screenshot: "on",
     actionTimeout: 10 * 1000,
-    navigationTimeout: 30 * 1000,
+    navigationTimeout: 10 * 1000,
   },
   projects: [
     {

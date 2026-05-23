@@ -1,0 +1,34 @@
+name: Merge Request
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  mergerequest:
+    name: Merge request
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup_node
+
+      - uses: ./.github/actions/install_dependencies
+
+      - uses: ./.github/actions/run_typecheck
+
+      - uses: ./.github/actions/run_eslint
+
+      - uses: ./.github/actions/install_playwright_browsers
+
+      - uses: ./.github/actions/run_playwright_tests
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

@@ -12,8 +12,8 @@
     "typescript-eslint": "^8.59.4"
   },
   "scripts": {
-    "test": "npx playwright test",
-    "test:chrome": "npx playwright test --project=chromium"
+    "test:local": "npx playwright test --config=configs/playwright/playwright.local.config.ts",
+    "test:github": "npx playwright test --config=configs/playwright/playwright.github.config.ts"
   },
   "type": "module"
 }

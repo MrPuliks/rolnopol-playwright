@@ -1,0 +1,9 @@
+name: Run Playwright tests
+description: Runs Playwright tests
+
+runs:
+    using: composite
+    steps:
+      - name: Run Playwright tests
+        shell: bash
+        run: npm run test:github
