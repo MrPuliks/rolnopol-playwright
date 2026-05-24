@@ -1,4 +1,4 @@
-import type { UserCredentials } from "../src/pages/authentication/types/UserCredentials.js";
+import type { UserCredentials } from "../src/pages/authentication/types/UserCredentials.types.js";
 
 /** Preexisting users test data. */
 export const ExistingUsers = {

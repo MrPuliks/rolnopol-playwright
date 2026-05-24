@@ -1,5 +1,5 @@
 import { type Page, type Locator } from "@playwright/test";
-import type { UserCredentials } from "./types/UserCredentials.js";
+import type { UserCredentials } from "./types/UserCredentials.types.js";
 
 /**
  * Login page.
