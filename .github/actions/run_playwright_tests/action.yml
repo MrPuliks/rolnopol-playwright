@@ -1,9 +1,20 @@
 name: Run Playwright tests
 description: Runs Playwright tests
 
+inputs:
+  browser:
+    required: true
+  workers:
+    required: true
+
 runs:
     using: composite
     steps:
       - name: Run Playwright tests
         shell: bash
-        run: npm run test:github
+        run: |
+          if [ "${{ inputs.browser }}" = "all" ]; then
+            npm run test:github -- --workers=${{ inputs.workers }}
+          else
+            npm run test:github -- --project=${{ inputs.browser }} --workers=${{ inputs.workers }}
+          fi

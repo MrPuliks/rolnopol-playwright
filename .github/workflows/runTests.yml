@@ -1,6 +1,21 @@
 name: Run tests
 on: 
   workflow_dispatch:
+    inputs:
+      browser:
+        description: Select browser to run tests
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - chromium
+          - firefox
+          - safari
+      workers:
+        description: Select of workers. Can be either number ("1") or percentage of available CPU ("50%").
+        required: true
+        default: "100%"
   push:
     branches: 
       - main
@@ -38,6 +53,9 @@ jobs:
 
       - name: Run Playwright tests
         uses: ./.github/actions/run_playwright_tests
+        with: 
+          browser: ${{ inputs.browser || 'all' }}
+          workers: ${{ inputs.workers || '100%' }}
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
