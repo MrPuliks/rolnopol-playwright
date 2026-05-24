@@ -16,6 +16,8 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
       options: --user root
+    env:
+      HOME: /root
     steps:
       - name: Checkout repository for .github changes
         uses: actions/checkout@v4
