@@ -1,0 +1,25 @@
+name: Generate HTML report
+on:
+  workflow_call:
+
+jobs:
+  merge-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository for tests
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setups/setup_node
+
+      - name: Install dependencies
+        uses: ./.github/actions/setups/install_dependencies
+
+      - name: Download reports
+        uses: ./.github/actions/reports/download_blob_reports
+
+      - name: Merge reports into HTML
+        uses: ./.github/actions/reports/merge_blob_reports
+
+      - name: Upload HTML report
+        uses: ./.github/actions/reports/upload_html_report

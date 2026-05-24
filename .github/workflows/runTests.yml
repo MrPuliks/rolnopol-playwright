@@ -1,5 +1,5 @@
 name: Run tests
-on: 
+on:
   workflow_dispatch:
     inputs:
       browser:
@@ -17,10 +17,10 @@ on:
         required: true
         default: "100%"
   push:
-    branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -33,12 +33,17 @@ jobs:
       options: --user root
     env:
       HOME: /root
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - name: Checkout repository for .github changes
         uses: actions/checkout@v4
 
       - name: Download and run application
-        uses: ./.github/actions/run_app
+        uses: ./.github/actions/setups/run_app
 
       - name: Checkout repository for tests
         uses: actions/checkout@v4
@@ -46,21 +51,26 @@ jobs:
           clean: false
 
       - name: Setup Node.js
-        uses: ./.github/actions/setup_node
+        uses: ./.github/actions/setups/setup_node
 
       - name: Install dependencies
-        uses: ./.github/actions/install_dependencies
+        uses: ./.github/actions/setups/install_dependencies
 
       - name: Run Playwright tests
-        uses: ./.github/actions/run_playwright_tests
-        with: 
+        uses: ./.github/actions/tests/run_playwright_tests
+        with:
           browser: ${{ inputs.browser || 'all' }}
           workers: ${{ inputs.workers || '100%' }}
+          shardIndex: ${{ matrix.shardIndex }}
+          shardTotal: ${{ matrix.shardTotal }}
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+      - name: Upload blob report
+        uses: ./.github/actions/reports/upload_blob_reports
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 10
+          shardIndex: ${{ matrix.shardIndex }}
+
+  call-workflow:
+    name: Generate HTML report
+    uses: ./.github/workflows/mergeReports.yml
+    if: ${{ !cancelled() }}
+    needs: [tests]

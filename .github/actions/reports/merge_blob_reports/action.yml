@@ -1,0 +1,9 @@
+name: Merge reports into HTML
+description: Merge blob reports from shards into HTML
+
+runs:
+  using: composite
+  steps:
+    - name: Merge reports to HTML
+      shell: bash
+      run: npx playwright merge-reports --reporter html ./all-blob-reports

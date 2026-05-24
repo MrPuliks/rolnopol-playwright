@@ -1,10 +1,10 @@
 name: Run checks
 on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: ./.github/actions/setup_node
+        uses: ./.github/actions/setups/setup_node
 
       - name: Install dependencies
-        uses: ./.github/actions/install_dependencies
+        uses: ./.github/actions/setups/install_dependencies
 
       - name: Run typecheck
-        uses: ./.github/actions/run_typecheck
+        uses: ./.github/actions/codeQuality/run_typecheck
 
       - name: Run ESLint
-        uses: ./.github/actions/run_eslint
+        uses: ./.github/actions/codeQuality/run_eslint
