@@ -1,0 +1,48 @@
+name: Run tests
+on: 
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  tests:
+    name: Run tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.60.0-noble
+      options: --user root
+    env:
+      HOME: /root
+    steps:
+      - name: Checkout repository for .github changes
+        uses: actions/checkout@v4
+
+      - name: Download and run application
+        uses: ./.github/actions/run_app
+
+      - name: Checkout repository for tests
+        uses: actions/checkout@v4
+        with:
+          clean: false
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup_node
+
+      - name: Install dependencies
+        uses: ./.github/actions/install_dependencies
+
+      - name: Run Playwright tests
+        uses: ./.github/actions/run_playwright_tests
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 10
