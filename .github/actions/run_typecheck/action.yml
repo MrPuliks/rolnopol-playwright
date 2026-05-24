@@ -1,9 +1,0 @@
-name: Run typecheck
-description: Runs 'npx tsc --noEmit' on repository.
-
-runs:
-    using: composite
-    steps:
-        - name: Run typecheck
-          shell: bash
-          run: npx tsc --noEmit

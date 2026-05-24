@@ -1,5 +1,5 @@
-name: Merge HTML reports
-on: 
+name: Generate HTML report
+on:
   workflow_call:
 
 jobs:
@@ -8,26 +8,18 @@ jobs:
     steps:
       - name: Checkout repository for tests
         uses: actions/checkout@v4
-   
+
       - name: Setup Node.js
-        uses: ./.github/actions/setup_node
+        uses: ./.github/actions/setup/setup_node
 
       - name: Install dependencies
-        uses: ./.github/actions/install_dependencies
+        uses: ./.github/actions/setup/install_dependencies
 
-      - name: Download blob reports from GitHub Actions Artifacts
-        uses: actions/download-artifact@v5
-        with:
-          path: all-blob-reports
-          pattern: blob-report-*
-          merge-multiple: true
+      - name: Download reports
+        uses: ./.github/actions/reports/download_blob_reports
 
-      - name: Merge into HTML Report
-        run: npx playwright merge-reports --reporter html ./all-blob-reports
+      - name: Merge reports into HTML
+        uses: ./.github/actions/reports/merge_blob_reports
 
       - name: Upload HTML report
-        uses: actions/upload-artifact@v4
-        with:
-          name: html-report--attempt-${{ github.run_attempt }}
-          path: playwright-report
-          retention-days: 14
+        uses: ./.github/actions/reports/upload_html_report

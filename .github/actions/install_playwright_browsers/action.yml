@@ -1,9 +1,0 @@
-name: Install Playwright browsers
-description: Installs Playwright browsers.
-
-runs:
-    using: composite
-    steps:
-      - name: Install Playwright browsers
-        shell: bash
-        run: npx playwright install --with-deps

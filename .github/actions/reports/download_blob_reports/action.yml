@@ -1,0 +1,12 @@
+name: Download reports
+description: Downloads blob reports from shards
+
+runs:
+  using: composite
+  steps:
+    - name: Download reports
+      uses: actions/download-artifact@v5
+      with:
+        path: all-blob-reports
+        pattern: blob-report-*
+        merge-multiple: true

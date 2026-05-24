@@ -1,9 +1,0 @@
-name: Run ESLint
-description: Runs ESLint check on repository
-
-runs:
-    using: composite
-    steps:
-      - name: Run ESLint
-        shell: bash
-        run: npx eslint
