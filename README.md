@@ -37,26 +37,26 @@ Technologies used:
 
 Run following command in terminal to check if Node and NPM are installed:
 
-```powershell
+```bash
 node -v
 npm -v
 ```
 
 Download or clone repository ([Git](https://git-scm.com/install/windows)):
 
-```powershell
+```bash
 git clone https://github.com/MrPuliks/rolnopol-playwright.git
 ```
 
 Run following command in terminal to download and install all required packages:
 
-```powershell
+```bash
 npm install
 ```
 
 To install and run Rolnopol application locally use following commands or follow Rolnopol README.
 
-```powershell
+```bash
 git clone https://github.com/jaktestowac/rolnopol.git
 cd rolnopol
 npm i && npm run start
@@ -161,7 +161,7 @@ To run tests locally, use scripts from `package.json`, that use configurations f
 Before running tests, app must be downloaded and started.
 Local configuration assumes that app is run on `http://localhost:3000` (this can be changed as `baseURL` in `configs\playwright\playwright.local.config.ts`)
 
-```powershell
+```bash
 git clone https://github.com/jaktestowac/rolnopol.git
 cd rolnopol
 npm i && npm run start
@@ -169,13 +169,13 @@ npm i && npm run start
 
 Basic test run, for all browsers:
 
-```powershell
+```bash
 npm run test:local
 ```
 
 To run tests on specific browser:
 
-```powershell
+```bash
 npm run test:local -- --project=chromium
 ```
 
@@ -196,7 +196,7 @@ All tests will be run and HTML report will be generated.
 Report download URL will be generated in `Upload HTML report` action.
 Download ZIP from URL, upack it locally to `playwright-report` folder and run command:
 
-```powershell
+```bash
 npx playwright show-report
 ```
 
