@@ -8,8 +8,10 @@ runs:
           uses: actions/checkout@v4
           with:
             repository: jaktestowac/rolnopol
+            path: app
         - name: Run app
           shell: bash
           run: |
+            cd app
             npm i
             npm run start &
