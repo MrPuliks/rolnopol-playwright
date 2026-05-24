@@ -5,8 +5,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env["CI"],
   retries: 1,
-  workers: '100%',
-  reporter: process.env['CI'] ? 'blob' : 'html',
+  workers: "100%",
+  reporter: process.env["CI"] ? "blob" : "html",
   use: {
     baseURL: "http://localhost:3000",
     headless: true,
