@@ -1,0 +1,13 @@
+name: Run application
+description: Runs application for tests.
+
+runs:
+    using: composite
+    steps:
+        - name: Checkout app
+          uses: actions/checkout@v4
+          with:
+            repository: jaktestowac/rolnopol
+        - name: Run app
+          shell: bash
+          run: npm i && npm run start

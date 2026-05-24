@@ -12,6 +12,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
+      - uses: ./.github/actions/run_app
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
