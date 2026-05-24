@@ -2,9 +2,11 @@ name: Run tests
 on: 
   workflow_dispatch:
   push:
-    branches: main
+    branches: 
+      - main
   pull_request:
-    branches: main
+    branches: 
+      - main
 
 jobs:
   tests:
@@ -26,15 +28,19 @@ jobs:
         with:
           clean: false
 
-      - uses: ./.github/actions/setup_node
+      - name: Setup Node.js
+        uses: ./.github/actions/setup_node
 
-      - uses: ./.github/actions/install_dependencies
+      - name: Install dependencies
+        uses: ./.github/actions/install_dependencies
 
-      - uses: ./.github/actions/run_playwright_tests
+      - name: Run Playwright tests
+        uses: ./.github/actions/run_playwright_tests
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 30
+          retention-days: 10
