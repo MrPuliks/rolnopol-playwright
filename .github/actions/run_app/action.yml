@@ -14,4 +14,4 @@ runs:
           run: |
             cd app
             npm i
-            npm run start &
+            nohup npm run start &
