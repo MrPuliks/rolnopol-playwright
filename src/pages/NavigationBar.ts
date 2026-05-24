@@ -1,5 +1,5 @@
 
 export class NavigationBar
 {
-    constructor(private readonly page: Page) {} 
+    constructor(private readonly page: Page) { } 
 } 
