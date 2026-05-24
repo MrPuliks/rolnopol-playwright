@@ -19,6 +19,7 @@ Technologies used:
 - [Architecture](#architecture)
   - [Page objects](#page-objects)
   - [Tests](#tests)
+  - [Test data](#test-data)
   - [Configs](#configs)
   - [ESLint](#eslint)
   - [Prettier](#prettier)
@@ -110,9 +111,21 @@ src/
 
 ### Tests
 
+All tests are located in `tests/`.
+
 ```text
 tests/
-  └──
+  ├── modules/
+  │     └── login/
+  └── api/
+```
+
+### Test Data
+
+All test data that is used by tests, upload files, downloaded files and predefined objects to fill out forms.
+
+```text
+resources/
 ```
 
 ### Configs
@@ -141,6 +154,7 @@ For code formatting repository uses Prettier with standard configuration.
 
 - all default fields with default values are set in `.prettierrc` to make sure every contributor will use same rules
 - config is enforced in `.vscode/settings.json` for whole workspace to make sure every contributor will use those rules
+- `.githooks/pre-commit` will run Prettier for all Staged Changes before commit
 
 ### Github
 
