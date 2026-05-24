@@ -19,7 +19,9 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+        with:
+          clean: false
+
       - uses: ./.github/actions/setup_node
 
       - uses: ./.github/actions/install_dependencies
