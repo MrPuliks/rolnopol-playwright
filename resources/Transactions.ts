@@ -1,4 +1,4 @@
-import type { Transaction } from "../src/pages/financialTracking/types/Transactions.js";
+import type { Transaction } from "../src/pages/financialTracking/types/Transactions.types.js";
 
 export const SimpleTransactions = {
   addFunds: {

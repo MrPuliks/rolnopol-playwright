@@ -1,5 +1,5 @@
 import { type Page, type Locator, expect } from "@playwright/test";
-import type { Transaction, TransactionCategory, TransactionType } from "./types/Transactions.js";
+import type { Transaction, TransactionCategory, TransactionType } from "./types/Transactions.types.js";
 import { parseMoneyToString } from "../../utilities/parseMoney.js";
 
 /**
