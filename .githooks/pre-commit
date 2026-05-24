@@ -8,13 +8,24 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "Running Prettier on staged files..."
-
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx|json|md|yml|yaml)$')
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
+PRETTIER_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx|json|md|yml|yaml)$')
 
 if [ -n "$FILES" ]; then
-  echo "$FILES" | xargs npx prettier --write
-  echo "$FILES" | xargs git add
+  echo "Running ESLint..."
+  echo "$FILES" | xargs npx eslint --fix
+
+  if [ $? -ne 0 ]; then
+    echo "ESLint failed"
+    exit 1
+  fi
 fi
+
+if [ -n "$PRETTIER_FILES" ]; then
+  echo "Running Prettier..."
+  echo "$PRETTIER_FILES" | xargs npx prettier --write
+fi
+
+git add $FILES $PRETTIER_FILES
 
 echo "Pre-commit checks passed"
