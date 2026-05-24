@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
+      options: --user root
     env:
-      HOME: /root
+      HOME: /github/home
     steps:
       - name: Checkout repository for .github changes
         uses: actions/checkout@v4
 
-      - uses: ./.github/actions/run_app
+      - name: Download and run application
+        uses: ./.github/actions/run_app
 
       - name: Checkout repository for tests
         uses: actions/checkout@v4
