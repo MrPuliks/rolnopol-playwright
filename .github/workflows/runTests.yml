@@ -54,8 +54,8 @@ jobs:
       - name: Run Playwright tests
         uses: ./.github/actions/run_playwright_tests
         with: 
-          browser: ${{ inputs.browser }}
-          workers: ${{ inputs.workers }}
+          browser: ${{ inputs.browser || 'all' }}
+          workers: ${{ inputs.workers || '100%' }}
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4

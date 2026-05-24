@@ -17,3 +17,4 @@ runs:
             npm run test:github -- --workers=${{ inputs.workers }}
           else
             npm run test:github -- --project=${{ inputs.browser }} --workers=${{ inputs.workers }}
+          fi
