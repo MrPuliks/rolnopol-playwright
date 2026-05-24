@@ -16,9 +16,10 @@ export class LoginPage {
   }
 
   /** Navigate to `Login` page using top navigation bar. */
-  public static async goTo(page: Page) {
+  public static async goTo(page: Page): Promise<LoginPage> {
     console.log(`Navigating to Login page.`);
     await page.getByTestId("nav-login").click();
+    return new LoginPage(page);
   }
 
   private async setEmail(email: string) {

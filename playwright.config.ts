@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 4,
   reporter: [["html"], ["list"]],
   use: {
-    baseURL: process.env["BASE_URL"],
+    baseURL: "http://localhost:3000",
     headless: false,
     trace: "retain-on-failure",
     video: "on",
