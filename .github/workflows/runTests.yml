@@ -11,6 +11,9 @@ jobs:
     name: Run tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.54.0-noble
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,8 +28,6 @@ jobs:
       - uses: ./.github/actions/setup_node
 
       - uses: ./.github/actions/install_dependencies
-
-      - uses: ./.github/actions/install_playwright_browsers
 
       - uses: ./.github/actions/run_playwright_tests
 
