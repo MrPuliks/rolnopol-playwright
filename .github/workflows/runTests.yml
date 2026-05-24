@@ -13,14 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
-
+    env:
+      HOME: /root
     steps:
-      - name: Checkout repository
+      - name: Checkout repository for .github changes
         uses: actions/checkout@v4
 
       - uses: ./.github/actions/run_app
 
-      - name: Checkout repository
+      - name: Checkout repository for tests
         uses: actions/checkout@v4
         with:
           clean: false
