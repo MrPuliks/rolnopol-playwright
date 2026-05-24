@@ -17,6 +17,9 @@ jobs:
 
       - uses: ./.github/actions/run_app
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - uses: ./.github/actions/setup_node
 
       - uses: ./.github/actions/install_dependencies

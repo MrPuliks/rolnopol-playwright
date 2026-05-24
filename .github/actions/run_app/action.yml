@@ -13,6 +13,3 @@ runs:
           run: |
             npm i
             npm run start &
-        - name: Wait for app
-          shell: bash
-          run: npx wait-on http://localhost:3000
