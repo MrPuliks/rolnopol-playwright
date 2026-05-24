@@ -10,4 +10,9 @@ runs:
             repository: jaktestowac/rolnopol
         - name: Run app
           shell: bash
-          run: npm i && npm run start
+          run: |
+            npm i
+            npm run start &
+        - name: Wait for app
+          shell: bash
+          run: npx wait-on http://localhost:3000
