@@ -10,10 +10,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: ./.github/actions/setup/setup_node
+        uses: ./.github/actions/setups/setup_node
 
       - name: Install dependencies
-        uses: ./.github/actions/setup/install_dependencies
+        uses: ./.github/actions/setups/install_dependencies
 
       - name: Download reports
         uses: ./.github/actions/reports/download_blob_reports
